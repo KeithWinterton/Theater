@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--Confirmation.xhtml will display a thank you message and allow the user
+to click on a button to take them back to TheaterLookup.xhtml.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/jsf/Template.xhtml">
+        <ui:define name="title">
+            Thank You
+        </ui:define> 
+        <ui:define name="body">
+            <h:form style="text-align: center">
+                <h:graphicImage value="resouces\images\pexels-photo-3709370.jpeg" />
+            </h:form>
+			<h:form>
+				<h:outputLabel value="Thank you for your order. We hope you enjoy your movie!"
+                           style="color:whitesmoke" />
+                <h:commandLink value="Back To Theater Lookup"
+                               action="#{cartBean.clearCart}"
+                               style="color: whitesmoke"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

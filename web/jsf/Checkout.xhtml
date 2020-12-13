@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--checkout.xhtml displays a list of items in the user's cart and the total of
+those items along with a text field for the user to enter their credit card number.
+checkout.xhtml expects the card number to be length sixteen, and if it is not,
+an error message is displayed. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/jsf/Template.xhtml">
+        <ui:define name="title">
+            CheckOut
+        </ui:define> 
+        <ui:define name="body">
+            <h:form>
+                <h:dataTable value="#{cartBean.cartList}" var="cart" style="color: whitesmoke">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Movie Name"/>
+                        </f:facet>
+                        <h:outputLabel value="#{cart.movieName}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Movie Time"/>
+                        </f:facet>
+                        <h:outputLabel value="#{cart.movieTime}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputLabel value="Price"/>
+                        </f:facet>
+                        <h:outputLabel value="$10.00" />
+                    </h:column>
+                </h:dataTable>
+                <h:outputLabel value="#{cartBean.showTicketTotal()}" style="color: whitesmoke" />
+                <br></br>
+                <h:outputLabel value="Enter a 16 digit credit card: " style="color:whitesmoke" />
+                <h:inputText id="card" label="credit Card" required="true"
+                         value="#{theaterBean.cardNumber}"
+                         validator="#{theaterBean.validateCard}">
+                </h:inputText>
+                <br></br>
+                <br></br>
+                <h:commandLink value="Buy tickets"
+                               action="Confirmation.xhtml"
+                               style="color:whitesmoke"/>
+                <br></br>
+                 <h:message for="card" style="color: red" />
+                 <h:commandLink value="Back to Show Times"
+                                 action="#{theaterBean.toMovieTimes}"
+                                 style ="color:whitesmoke"
+                                 immediate="true">
+                    <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                    <f:param name="theaterid" value="#{theaterBean.stringtheaterid}" />
+                    <f:param name="movieid" value="#{theaterBean.stringmovieid}" />
+                 </h:commandLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>      
+</html>
+

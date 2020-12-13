@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--TheaterLookup.xhtml will allow the user to enter a zip code to find
+a list of nearby theaters. TheaterLookup.xhtml supports the zip codes 75043,
+75028, 75080, 75035, and 75225. If the user enters an unsupported zip code or
+a zip code that is not of length five an error message is displayed. The zip code
+is validated by TheaterSystemBean's validatezipcode method. -->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:outputStylesheet library="css" name="images.css"  />
+    <ui:composition template="/jsf/Template.xhtml">
+   
+        <ui:define name="title">
+            Find theaters by zip code
+        </ui:define>
+ 
+        <ui:define name="body">
+            <h:form style="text-align: center">
+                <h:graphicImage value="resouces\images\pexels-photo-2225145.jpeg"  />
+            </h:form>
+            <h:form>
+                <br></br>
+                <h:outputLabel value="Enter a five digit zip code to find nearby theaters: "
+                    style="color: whitesmoke" />
+                <h:inputText id="zip" label="zipcode" required="true"
+                    value="#{theaterBean.zipcode}"
+                    validator="#{theaterBean.validatezipcode}" >
+                </h:inputText>
+                <h:commandLink value="   Find Theaters"
+                               action="#{theaterBean.toTheaterList}"
+                               style="color:whitesmoke">
+                    <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                </h:commandLink>
+                <br></br>
+                <h:message for="zip" style="color: red" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

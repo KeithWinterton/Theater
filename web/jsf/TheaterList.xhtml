@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--TheaterList.xhtml will list the theaters for the entered zip code and will
+display the theater's name, address, and phone number. Each theater
+will have a clickable link to view the its movies, which is shown on TheaterMovies.xhtml.
+When moving to TheaterMovies.xhtml the zip code and the theater's id 
+will be passed to TheaterMovies.xhtml. TheaterList.xhtml also has a button
+that will allow the user to go back to TheaterLookup.xhtml.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/jsf/Template.xhtml">
+    <style type="text/css">
+            table.theater td {
+                padding: 5px;
+                border: 5px;
+		border-bottom: 5px;
+            }
+    </style>
+    
+        <ui:define name="title">Theaters for #{theaterBean.zipcode}</ui:define>
+        <ui:define name="body">
+            <h:form style="text-align: center">
+                <h:outputText value="Theaters for #{theaterBean.zipcode}" style="color: whitesmoke"/>
+            </h:form>
+            <h:form>
+                <h:dataTable styleClass="theater" style="color: whitesmoke"
+                    value="#{theaterBean.theaterList}" var="theater">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="See Movies"/>
+                        </f:facet>
+                        <h:commandLink value="#{theater.theatername}'s Movies"
+                                action="#{theaterBean.toTheaterMovies}"
+                                style="color: whitesmoke">
+                            <f:param name="theaterid" value="#{theater.theaterid}" />
+                            <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                        </h:commandLink>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Name"/>
+                        </f:facet>
+                        <h:outputText value="#{theater.theatername}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Address"/>
+                        </f:facet>
+                        <h:outputText value="#{theater.address}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Phone"/>
+                        </f:facet>
+                        <h:outputText value="#{theater.phone}"/>
+                    </h:column>
+                </h:dataTable>
+                <br></br>
+                <h:commandLink value="Back To Theater Lookup"
+                                 action="TheaterLookup.xhtml"
+                                 style="color:whitesmoke"/>
+            </h:form>
+        </ui:define> 
+    </ui:composition>
+</html>
+

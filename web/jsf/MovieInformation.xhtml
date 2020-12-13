@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--MovieInfomation will display a movie's title, release year, description, and run time.
+MovieInformation.xhtml will allow the user to click a link to show its show times
+as well a button to go back to the theater's movie list.-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ui:composition template="/jsf/Template.xhtml">
+        <ui:define name="title">
+            Information for #{theaterBean.movie.title} 
+        </ui:define> 
+        <ui:define name="body">
+            <h:form>
+                <br></br>
+                <h:panelGrid columns="2" style="color: whitesmoke">
+                    <h:outputText value="" />
+                    <h:graphicImage value="#{theaterBean.movie.bigpicture}" />
+                    
+                    <h:outputLabel value="Title" />
+                    <h:outputText value="#{theaterBean.movie.title}" />
+                
+                    <h:outputLabel value="Description" />
+                    <h:outputText value="#{theaterBean.movie.description}" />
+                
+                    <h:outputLabel value="Release Year" />
+                    <h:outputText value="#{theaterBean.movie.releaseyear}" />
+                    
+                    <h:outputLabel value="Run Time in Minutes" />
+                    <h:outputText value="#{theaterBean.movie.lengthinminutes}" />
+                </h:panelGrid>
+                <br></br>
+                <h:commandLink value="See #{theaterBean.movie.title}'s Show Times"
+                               action="#{theaterBean.toMovieTimes}"
+                               style="color:whitesmoke">
+                    <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                    <f:param name="theaterid" value="#{theaterBean.stringtheaterid}" />
+                    <f:param name="movieid" value="#{theaterBean.stringmovieid}" />
+                </h:commandLink>
+                <br></br>
+                <h:commandLink value="Back to #{theaterBean.theater.theatername}'s Movie List"
+                                 style="color: whitesmoke"
+                                 action="#{theaterBean.toTheaterMovies}">
+                    <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                    <f:param name="theaterid" value="#{theaterBean.stringtheaterid}" />
+                </h:commandLink>      
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

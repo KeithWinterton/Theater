@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <!--NumberOfTickets.xhtml will allow the user to select their desired
+	number of tickets. NumberOfTickets.xhtml will allow the either to 
+	go back to MovieShowTimes.xhtml or to ItemAdded.xhtml-->
+	
+	<ui:composition template="/jsf/Template.xhtml">
+        <ui:define name="title">Select number of tickets for #{cartBean.title} #{cartBean.time}</ui:define>
+            <ui:define name="body">
+                <h:form>
+                    <h:outputText value="Select number of tickets for
+                            #{cartBean.title} #{cartBean.time}" />
+                    <br></br>
+                    <h:selectOneMenu value="#{cartBean.numberOftickets}">
+                        <f:selectItem itemValue="1" />
+                        <f:selectItem itemValue="2" />
+                        <f:selectItem itemValue="3" />
+                        <f:selectItem itemValue="4" />
+                        <f:selectItem itemValue="5" />
+                        <f:selectItem itemValue="6" />
+                        <f:selectItem itemValue="7" />
+                        <f:selectItem itemValue="8" />
+                        <f:selectItem itemValue="9" />
+                        <f:selectItem itemValue="10" />
+                    </h:selectOneMenu>
+                    <br></br>
+                    <h:commandLink value="Buy Tickets" action="#{cartBean.addMovieToCart}"
+                                   style="color: whitesmoke">
+                        <f:param name="movieid" value="#{theaterBean.stringmovieid}"/>
+                        <f:param name="title" value="#{theaterBean.movie.title}" />
+                        <f:param name="theaterid" value="#{theaterBean.stringtheaterid}" />
+                        <f:param name="zipcode" value="#{theaterBean.zipcode}"/>
+                        <f:param name="time" value="#{time.movietime}" />
+                    </h:commandLink>
+                    <br></br>
+                    <h:commandLink value="Back to Show Times"
+                                 action="#{theaterBean.toMovieTimes}"
+                                 style="color: whitesmoke">
+                        <f:param name="zipcode" value="#{theaterBean.zipcode}" />
+                        <f:param name="theaterid" value="#{theaterBean.stringtheaterid}" />
+                        <f:param name="movieid" value="#{theaterBean.stringmovieid}" />
+                    </h:commandLink>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+
