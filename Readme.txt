@@ -1,4 +1,4 @@
-TheaterSystem will allow an user to enter a supported zip code,
+TheaterSystem will allow a user to enter a supported zip code,
 select a theater from a list of theaters in the entered zip code,
 see movies playing at the selected theater,
 select a movie and see its show times, and
@@ -87,7 +87,7 @@ TheaterSystemEJB that will return either a single or a list of
 Movies objects, which are used by TheaterSystemBean
 
 Times.java - Times.java is an Times entity and contains
-a time's id and time will provide named queries for
+a time's id. Times will provide named queries for
 TheaterSystemEJB that will return either a single or a list of
 Times objects, which are used by TheaterSystemBean.
 
